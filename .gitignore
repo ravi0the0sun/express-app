@@ -1,7 +1,5 @@
 node_modules
 dist
-<<<<<<< HEAD
 .DS_Store 
-=======
-.DS-Store
->>>>>>> coreapp
+
+

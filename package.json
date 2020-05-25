@@ -2,10 +2,8 @@
   "name": "project2",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "scripts": {
-    
-  },
+  "main": "server.js",
+  "scripts": {},
   "keywords": [],
   "author": "",
   "license": "ISC",
