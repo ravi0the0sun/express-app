@@ -17,6 +17,7 @@ For the Docker deployment we will need the computer of the user to be installed 
 
 #### FOR LOCAL DEPLOYMENT: 
 [NodeJS](https://nodejs.org/en/download/)
+
 [MongoDB](https://docs.mongodb.com/manual/installation/)
 
 ### DOCKER DEPLOYMENT
@@ -69,11 +70,18 @@ So the app is running on ‘localhost:3000/’ now.
 > This manual will be changed until the last submission and is not the final manual you should reference. 
 
 ### References: 
+
 [Reference Documentation: Docker Docs](https://docs.docker.com/reference/)
+
 [API Reference Documentation: NodeJS](https://nodejs.org/en/docs/)
+
 [Documentation: Git](https://git-scm.com/doc)
+
 [Reference: MongoDB](https://docs.mongodb.com/manual/reference/)
+
 [4.x API: ExpressJS](https://expressjs.com/en/4x/api.html)
+
 [body-parser: npm](https://www.npmjs.com/package/body-parser)
+
 [API Docs: mongoose for mongodb](https://www.npmjs.com/package/body-parser)
 
