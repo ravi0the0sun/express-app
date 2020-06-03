@@ -16,7 +16,7 @@ const userSchema = mongoose.Schema({
         type: String,
         require: true
     }, 
-    appointment: [String],
+    appointment: [{type: mongoose.Schema.Types.ObjectId}],
     require: false
 });
 const User = mongoose.model('User', userSchema);

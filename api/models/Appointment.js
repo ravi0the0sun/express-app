@@ -15,6 +15,14 @@ const appointmentSchema = mongoose.Schema({
     appointmentDate: {
         type: Date,
         require: true
+    }, 
+    createdBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        require: true
+    },
+    createdFor: {
+        type: mongoose.Schema.Types.ObjectId,
+        require: true
     }
 });
 const Appointment = mongoose.model('Appointment', appointmentSchema);

@@ -1,9 +1,10 @@
 {
   "name": "express-app",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "dev": "node server.js"
   },
   "keywords": [],
   "author": "Sameep Deuba, Ujjwol",

@@ -9,7 +9,7 @@ const clientSchma = mongoose.Schema({
         require: true
     }, 
     apponiments: {
-        type: [String],
+        type: [{ type: mongoose.Schema.Types.ObjectId }],
         require: false
     }
 });
