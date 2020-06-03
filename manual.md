@@ -59,7 +59,7 @@ For client app `cd /` into `clientapp` folder and type:
 
 ```npm run start```
 
-So the app is running on ‘localhost:3000/’ now.
+So the app is running on 'localhost:3000/' now.
 
 ### Notes:  
 > The current version of the app is using the local development and is using the latest version of the library, as to prevent any app vulnerability through open source npm packages if installing node modules or after ‘npm install’ there are updatable packages ‘npm audit fix’ should be used to update the packages.
