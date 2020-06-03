@@ -1,3 +1,4 @@
+// CRUD function for user
 const mongoose = require('mongoose');
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
@@ -15,7 +16,16 @@ exports.getUser = async (req, res) => {
     try {
         const userName = req.body.userName;
         const user = await User.find({ userName: userName });
-        res.status(200).json({ result: user });
+        res.status(200).json({ result: user.name });
+    } catch(err) {
+        res.status(500).json(err);
+    };
+};
+
+exports.getUserById = async (req, res) => {
+    try {
+        const user = await User.findById(req.params.userId);
+        res.status(200).json({ result: user._id });
     } catch(err) {
         res.status(500).json(err);
     };
@@ -35,7 +45,7 @@ exports.createUser = async (req, res) => {
             password: hashPass
         });
         const newUser = await user.save();
-        res.status(200).json({ user: newUser });
+        res.status(200).json({ user: newUser._id });
     } catch(err) {
         res.status(500).json({ error: err });
     };

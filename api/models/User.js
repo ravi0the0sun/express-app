@@ -16,7 +16,7 @@ const userSchema = mongoose.Schema({
         type: String,
         require: true
     }, 
-    appointment: [],
+    appointment: [String],
     require: false
 });
 const User = mongoose.model('User', userSchema);

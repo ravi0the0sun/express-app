@@ -1,3 +1,4 @@
+// CRUD function for appointment
 const mongoose = require('mongoose');
 const Appointment = require('../models/Appointment');
 

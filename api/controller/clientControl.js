@@ -1,3 +1,4 @@
+// CRUD function for client
 const mongoose = require('mongoose');
 const Client = require('../models/Client');
 
