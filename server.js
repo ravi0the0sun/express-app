@@ -20,13 +20,14 @@ app.get('/', (req, res) => {
     res.status(200).json('hi there we are up and running.');
 });
 
-const user = require('./api/routes/user')
-const appointment = require('./api/routes/appointment');
-const client = require('./api/routes/client');
-
-app.use('/client', client);
-app.use('/appointment', appointment);
-app.use('/user', user);  
+const router = {
+  user: require('./api/routes/user'),
+  appointment: require('./api/routes/appointment'),
+  client: require('./api/routes/client')
+}
+app.use('/client', router.client);
+app.use('/appointment', router.appointment);
+app.use('/user', router.user);  
 
 app.listen(3000, () => {
     console.log('server is running on localhost:3000');

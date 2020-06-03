@@ -22,8 +22,12 @@ exports.getUser = async (req, res) => {
 };
 
 exports.createUser = async (req, res) => {
+    const { userName, email, password} = req.body;
+    const test = await User.findOne({ userName: userName });
+    if (test != null) {
+        return res.status(400).send('Username already in use.');
+    };
     try {
-        const { userName, email, password} = req.body;
         const hashPass = await bcrypt.hash(password, 10);
         const user = new User({
             userName: userName,

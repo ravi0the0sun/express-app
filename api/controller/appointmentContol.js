@@ -4,7 +4,7 @@ const Appointment = require('../models/Appointment');
 exports.getAppointment = async (req, res) => {
     try {
         const appointments = await Appointment.find();
-        res.status(200).json({ result: appointments });
+        res.status(200).json({ appointment: appointments });
     } catch(err) {
         res.status(500).json({ error: err });
     };
