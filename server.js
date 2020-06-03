@@ -19,9 +19,11 @@ app.get('/', (req, res) => {
     console.log('all good');
     res.status(200).json('hi there we are up and running.');
 });
+
 const user = require('./api/routes/user')
 const appointment = require('./api/routes/appointment');
 const client = require('./api/routes/client');
+
 app.use('/client', client);
 app.use('/appointment', appointment);
 app.use('/user', user);  
