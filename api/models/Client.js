@@ -8,6 +8,10 @@ const clientSchma = mongoose.Schema({
         type: String,
         require: true
     }, 
+    number: {
+        type: String,
+        require: false
+    },
     apponiments: {
         type: [{ type: mongoose.Schema.Types.ObjectId }],
         require: false

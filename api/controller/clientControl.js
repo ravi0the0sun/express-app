@@ -25,7 +25,8 @@ exports.addClient = async (res, req) => {
     try {
         const client = new Client({
             clientName: req.body.clientName,
-            email: req.body.email
+            email: req.body.email,
+            number: req.body.number
         });
         const result = await client.save();
         res.status(200).json({ result: result });
