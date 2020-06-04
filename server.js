@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const config = require('./config/db');
+const auth = require('./auth/auth');
 const app = express();
 
 app.use(express.json());
@@ -24,8 +25,8 @@ const router = {
   appointment: require('./api/routes/appointment'),
   client: require('./api/routes/client')
 }
-app.use('/client', router.client);
-app.use('/appointment', router.appointment);
+app.use('/client', auth.loginAuth, router.client);
+app.use('/appointment', auth.loginAuth, router.appointment);
 app.use('/user', router.user);  
 
 app.listen(3000, () => {
