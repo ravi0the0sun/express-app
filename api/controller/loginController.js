@@ -4,6 +4,9 @@ const bcrypt = require('bcrypt');
 exports.createUser = async (req, res) => {
     const { email, password, name } = req.body;
     const test = await User.findOne({ email: email });
+    if (email, password, name === undefined) {
+        return res.status(400).send('Missing Credentials.');
+    }
     if (test != null) {
         return res.status(400).send('Email already in use.');
     };
@@ -21,13 +24,29 @@ exports.createUser = async (req, res) => {
     };
 };
 
-exports.login = async (req, res) => {
-    const user = await User.findOne({ email : req.body.email });
-    if (user === null) {
-        return res.status(400).send('Wrong Email or Password');
-    }
+exports.deleteUser = async (req, res) => {
     try {
-        if (bcrypt.compare(req.body.password, user.password)) {
+        const result = await User.findByIdAndDelete(req.body.userId);
+        res.status(200).json({ result: result });
+    } catch (err) {
+        res.status(500).json({ error: err })
+    }
+}
+
+exports.login = async (req, res) => {
+    
+    try {
+        const { email, password } = req.body;
+        const user = await User.findOne({ email : email });
+        if ( email, password == undefined) {
+            return res.status(400).send('Missing Credentials.')
+        };
+        if (user === null) {
+            return res.status(400).send('Wrong Email or Password');
+        };
+        console.log(await bcrypt.compare(user.password, password));
+        // bcrypt has some problems 
+        if (await bcrypt.compare(user.password, password)) {
             res.status(200).send('Logedin');
         } else {
             res.status(400).send('Wrong Email or Password');

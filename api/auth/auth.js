@@ -7,4 +7,3 @@ exports.loginAuth = async (req, res, next) => {
     next();
 };
 
-exports.authRole

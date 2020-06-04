@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const ROLES = require('./ROLES')
 const userSchema = mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
@@ -17,8 +18,8 @@ const userSchema = mongoose.Schema({
         require: true
     }, 
     role: {
-        type: Object,
-        require: true
+        type: String,
+        default: ROLES.pending
     },
     appointment: [{type: mongoose.Schema.Types.ObjectId}],
     require: false
