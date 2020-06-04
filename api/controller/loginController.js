@@ -41,12 +41,10 @@ exports.login = async (req, res) => {
         if ( email, password == undefined) {
             return res.status(400).send('Missing Credentials.')
         };
-        if (user === null) {
+        if (user == null) {
             return res.status(400).send('Wrong Email or Password');
         };
-        console.log(await bcrypt.compare(user.password, password));
-        // bcrypt has some problems 
-        if (await bcrypt.compare(user.password, password)) {
+        if (await bcrypt.compare(password, user.password)) {
             res.status(200).send('Logedin');
         } else {
             res.status(400).send('Wrong Email or Password');
