@@ -24,11 +24,13 @@ app.get('/', (req, res) => {
 const router = {
   user: require('./api/routes/user'),
   appointment: require('./api/routes/appointment'),
-  client: require('./api/routes/client')
+  client: require('./api/routes/client'),
+  login: require('./api/routes/login')
 }
 app.use('/client', middlewear, auth.loginAuth, router.client);
 app.use('/appointment', middlewear, auth.loginAuth, router.appointment);
-app.use('/user', middlewear, auth.loginAuth, router.user);  
+app.use('/user', middlewear, auth.loginAuth, router.user); 
+app.use('/', router.login); 
 
 app.listen(3000, () => {
     console.log('server is running on localhost:3000');
