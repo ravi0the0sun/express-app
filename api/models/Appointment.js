@@ -1,5 +1,9 @@
 const mongoose = require('mongoose');
 const appointmentSchema = mongoose.Schema({
+    appointmentId: {
+        type: mongoose.Schema.Types.ObjectId,
+        require:true
+    },
     createdDate: {
         type: Date,
         default: Date.now()

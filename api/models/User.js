@@ -1,5 +1,9 @@
 const mongoose = require('mongoose');
 const userSchema = mongoose.Schema({
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        require:true
+    },
     name: {
         type: String,
         require: false
@@ -12,6 +16,10 @@ const userSchema = mongoose.Schema({
         type: String,
         require: true
     }, 
+    role: {
+        type: Object,
+        require: true
+    },
     appointment: [{type: mongoose.Schema.Types.ObjectId}],
     require: false
 });

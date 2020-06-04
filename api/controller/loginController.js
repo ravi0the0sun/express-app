@@ -1,5 +1,3 @@
-// CRUD function for user
-const mongoose = require('mongoose');
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 
@@ -9,16 +7,6 @@ exports.allUsers = async (req, res) => {
         res.status(200).json({ users: users.map(user => user._id) });
     } catch(err) {
         res.status(500).json({ error: err });
-    };
-};
-
-exports.getUser = async (req, res) => {
-    try {
-        const email = req.body.email;
-        const user = await User.find({ email: email });
-        res.status(200).json({ result: user._id });
-    } catch(err) {
-        res.status(500).json(err);
     };
 };
 
@@ -32,7 +20,7 @@ exports.getUserById = async (req, res) => {
 };
 
 exports.createUser = async (req, res) => {
-    const { email, password} = req.body;
+    const { email, password, name } = req.body;
     const test = await User.findOne({ email: email });
     if (test != null) {
         return res.status(400).send('Email already in use.');
@@ -41,7 +29,8 @@ exports.createUser = async (req, res) => {
         const hashPass = await bcrypt.hash(password, 10);
         const user = new User({
             email: email,
-            password: hashPass
+            password: hashPass,
+            name: name
         });
         const newUser = await user.save();
         res.status(200).json({ user: newUser._id });

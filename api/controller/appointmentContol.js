@@ -25,7 +25,7 @@ exports.addAppointment = async (req, res) => {
     try {
         const appointment = new Appointment({
             clientId: req.body.clientId,
-            userId: req.body.userId,
+            userId: req.body.user.userId,
             appointmentDate: req.body.appointmentDate
         });
         const newAppointment = await appointment.save();
