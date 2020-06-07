@@ -1,8 +1,8 @@
 // imports from diffrent libs and from the node-modules
 const express = require('express');
 const mongoose = require('mongoose');
+const passport = require('passport')
 const expressLayouts = require('express-ejs-layouts');
-const session = require('express-session');
 const config = require('./config/db');
 const auth = require('./api/auth/auth');
 const middlewear = require('./api/auth/middlewear')
@@ -25,15 +25,11 @@ mongoose
 app.use(expressLayouts);
 app.set('view engine', 'ejs');
 
+
 app.use(express.urlencoded({ extended: true }));
 
-app.use(
-  session({
-    secret: 'secret',
-    resave: true,
-    saveUninitialized: true
-  })
-);
+app.use(passport.initialize());
+app.use(passport.session());
 
 // app.get('/', (req, res) => {
 //     console.log('all good');

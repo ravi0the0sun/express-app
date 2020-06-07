@@ -1,14 +1,31 @@
 const User = require('../models/User');
+const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
 
 exports.createUser = async (req, res) => {
-    const { email, password, name } = req.body;
+    const { email, password, name , password2 } = req.body;
+    let error = [];
+    if (!email || !password || !name || !password2) {
+        error.push({ msg: 'Missing Credentials.' });
+    };
+    if (password != password2) {
+        error.push({msg: 'Password Donot Match' });
+    };
+    if (password.length < 6) {
+        error.push({ msg: 'Short Password'})
+    };
     const test = await User.findOne({ email: email });
-    if (!email || !password || !name) {
-        return res.status(400).send('Missing Credentials.');
-    }
-    if (test != null) {
-        return res.status(400).send('Email already in use.');
+        if (test != null) {
+            error.push({ msg: 'Email already in use.' });
+        };
+    if (error.length > 0) {
+         return  res.render('register', {
+            error,
+            name,
+            email,
+            password,
+            password2
+        });
     };
     try {
         const hashPass = await bcrypt.hash(password, 10);
@@ -18,9 +35,10 @@ exports.createUser = async (req, res) => {
             name: name
         });
         const newUser = await user.save();
-        res.status(200).json({ user: newUser._id });
+        console.log(newUser);
+        res.status(200).redirect('./login');
     } catch(err) {
-        res.status(500).json({ error: err });
+        res.status(500).render('register');
     };
 };
 
@@ -37,17 +55,25 @@ exports.login = async (req, res) => {
     try {
         const { email, password } = req.body;
         const user = await User.findOne({ email : email });
+        let error = [];
         if ( !email || !password ) {
-            return res.status(400).send('Missing Credentials.')
+            error.push({ msg: 'Missing Credentials.' });
         };
         if (!user) {
-            return res.status(400).send('Wrong Email or Password');
+            error.push({ msg: 'Wrong Email or Password' });
         };
         if (await bcrypt.compare(password, user.password)) {
-            res.status(200).send('Logedin');
+            res.render('dashboard')
         } else {
-            res.status(400).send('Wrong Email or Password');
+            error.push({ msg: 'Wrong Email or Password' });
         };
+        if (error.length > 0) {
+            return res.render('login', {
+                error,
+                email
+            });
+        };
+        res.status(200).render('dashboard')
     } catch(err) {
         res.status(500).json({ error: err });
     };
