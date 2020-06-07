@@ -1,8 +1,8 @@
 // donot touch this login auth.
+// Authtentication function for user permission
 exports.loginAuth = async (req, res, next) => {
-    if (req.user == undefined){
-        return res.status(403).send('Not logged in!!!');
+    if (!req.user){
+        return res.status(403).json('Not logged in!!!');
     };
-    next();
+    return next();
 };
-

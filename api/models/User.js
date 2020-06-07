@@ -1,3 +1,4 @@
+// data model of users and admin
 const mongoose = require('mongoose');
 const ROLES = require('./ROLES')
 const userSchema = mongoose.Schema({

@@ -4,5 +4,7 @@ const loginController = require('../controller/loginController');
 
 router.post('/register', loginController.createUser);
 router.post('/login', loginController.login);
-router.delete('/', loginController.deleteUser);
+router.get('/register', (req, res) => res.render('register'));
+router.get('/login', (req, res) => res.render('login'));
+// router.get('/', loginController.deleteUser);
 module.exports = router;

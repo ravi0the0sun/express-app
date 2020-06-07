@@ -1,3 +1,4 @@
+// data model of appointment
 const mongoose = require('mongoose');
 const appointmentSchema = mongoose.Schema({
     appointmentId: {

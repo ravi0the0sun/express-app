@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 exports.createUser = async (req, res) => {
     const { email, password, name } = req.body;
     const test = await User.findOne({ email: email });
-    if (email, password, name === undefined) {
+    if (!email || !password || !name) {
         return res.status(400).send('Missing Credentials.');
     }
     if (test != null) {
@@ -37,10 +37,10 @@ exports.login = async (req, res) => {
     try {
         const { email, password } = req.body;
         const user = await User.findOne({ email : email });
-        if ( email, password == undefined) {
+        if ( !email || !password ) {
             return res.status(400).send('Missing Credentials.')
         };
-        if (user == null) {
+        if (!user) {
             return res.status(400).send('Wrong Email or Password');
         };
         if (await bcrypt.compare(password, user.password)) {

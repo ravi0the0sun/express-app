@@ -1,3 +1,4 @@
+// data model of client
 const mongoose = require('mongoose');
 const clientSchma = mongoose.Schema({
     clientId: {
