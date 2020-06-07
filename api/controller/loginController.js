@@ -73,7 +73,7 @@ exports.login = async (req, res) => {
                 email
             });
         };
-        return res.status(200).render('dashboard', {
+        return res.render('dashboard', {
             user
         })
     } catch(err) {
