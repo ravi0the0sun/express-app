@@ -73,8 +73,10 @@ exports.login = async (req, res) => {
                 email
             });
         };
-        res.status(200).render('dashboard')
+        res.status(200).render('dashboard', {
+            user
+        })
     } catch(err) {
-        res.status(500).json({ error: err });
+        res.status(500).render('login');
     };
 };
