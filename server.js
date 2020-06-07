@@ -51,6 +51,12 @@ app.use('/user', middlewear, auth.loginAuth, router.user);
 app.use('/', router.login); 
 app.use('/', router.index);
 
+app.get('/dashboard', middelwear, auth.loginAuth, (req, res) => { 
+  res.render('dashboard', {
+      user: req.user
+  }); 
+});
+
 app.listen(3000, () => {
     console.log('server is running on localhost:3000');
 });
