@@ -51,7 +51,7 @@ app.use('/user', middlewear, auth.loginAuth, router.user);
 app.use('/', router.login); 
 app.use('/', router.index);
 
-app.get('/dashboard', middelwear, auth.loginAuth, (req, res) => { 
+app.get('/dashboard', middlewear, auth.loginAuth, (req, res) => { 
   res.render('dashboard', {
       user: req.user
   }); 
