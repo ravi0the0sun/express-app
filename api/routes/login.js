@@ -11,6 +11,7 @@ router.get('/login', (req, res) => res.render('login', {
     title: 'Login'
 }));
 router.get('/logout', (req, res) => {
+    // reseting the session 
     req.session.user = null;
     res.redirect('./login');
 });

@@ -1,15 +1,21 @@
 // imports from diffrent libs and from the node-modules
 const express = require('express');
+// mogodb data modeling and configuring 
 const mongoose = require('mongoose');
+// creating a session for the user when they login
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
+// rendering the ejs files as dynamic htmls
 const expressLayouts = require('express-ejs-layouts');
 const path = require('path');
+// path for the database
 const config = require('./api/config/db');
+// auth and middlewear app to check the auththentication 
 const auth = require('./api/auth/auth');
 const middlewear = require('./api/auth/middlewear')
 const app = express();
 
+// setting the request files to be read as json
 app.use(express.json());
 
 // setting up the mongodb with the help of mongoose 
@@ -25,7 +31,7 @@ mongoose
 
 // // setting up session and cookieParser
 app.use(cookieParser());
-app.use(session({ secret: 'this is a secret' }));
+app.use(session({ secret: 'session password', resave: false, saveUninitialized: false }));
 
 
 // render the html using ejs 
