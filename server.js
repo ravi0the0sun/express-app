@@ -4,7 +4,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 // creating a session for the user when they login
 const session = require('express-session');
-const cookieParser = require('cookie-parser');
 // rendering the ejs files as dynamic htmls
 const expressLayouts = require('express-ejs-layouts');
 const path = require('path');
@@ -30,7 +29,6 @@ mongoose
 });
 
 // // setting up session and cookieParser
-app.use(cookieParser());
 app.use(session({ secret: 'session password', resave: false, saveUninitialized: false }));
 
 

@@ -1,5 +1,4 @@
 const User = require('../models/User');
-const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
 
 exports.createUser = async (req, res) => {
