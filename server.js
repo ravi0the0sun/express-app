@@ -29,7 +29,12 @@ mongoose
 });
 
 // // setting up session and cookieParser
-app.use(session({ secret: 'session password', resave: false, saveUninitialized: false }));
+app.use(session({ 
+  secret: 'session password',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {maxAge: 3600000} 
+}));
 
 
 // render the html using ejs 
