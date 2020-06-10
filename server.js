@@ -44,7 +44,7 @@ app.set('view engine', 'ejs');
 app.set('views', path.join('public', 'views'));
 
 // declaring static dir for CSS files 
-app.use('/style', express.static('/public' + '/style'))
+app.use(express.static(__dirname + '/public'))
 
 app.use(express.urlencoded({ extended: true }));
 

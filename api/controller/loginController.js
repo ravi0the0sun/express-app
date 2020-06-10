@@ -57,6 +57,9 @@ exports.login = async (req, res) => {
         const { email, password } = req.body;
         const user = await User.findOne({ email : email });
         let error = [];
+        if (req.session.error) {
+            error.push({ msg: req.session.error })
+        };
         if ( !email || !password ) {
             error.push({ msg: 'Missing Credentials.' });
         };
