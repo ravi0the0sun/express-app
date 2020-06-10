@@ -34,5 +34,5 @@ router.get('/logout', (req, res) => {
     res.redirect('./login');
 });
 
-// router.get('/', loginController.deleteUser);
+// router.delete('/delete', loginController.deleteUser);
 module.exports = router;

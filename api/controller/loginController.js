@@ -19,6 +19,7 @@ exports.createUser = async (req, res) => {
         };
     if (error.length > 0) {
          return  res.render('register', {
+            title: 'Register',
             error,
             name,
             email,
@@ -45,8 +46,13 @@ exports.createUser = async (req, res) => {
 
 exports.deleteUser = async (req, res) => {
     try {
-        const result = await User.findByIdAndDelete(req.body.userId);
-        res.status(200).json({ result: result });
+        const users = await User.find();
+        const result = users.map( async user =>  {
+            if (user.name == '' || user.email == '' || await bcrypt.compare('', user.password || user.role)) {
+                return await User.findByIdAndDelete(user._id);
+            };
+        });
+        res.status(200).json(result);
     } catch (err) {
         res.status(500).json({ error: err })
     }
@@ -81,7 +87,6 @@ exports.login = async (req, res) => {
         };
     } catch(err) {
         res.status(500).render('login', {
-            error,
             title: 'Login'
         });
     };
