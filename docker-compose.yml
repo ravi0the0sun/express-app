@@ -20,4 +20,4 @@ services:
         container_name: mongo
         image: mongo
         ports: 
-            - '7000:7000'
+            - '27017:27017'
