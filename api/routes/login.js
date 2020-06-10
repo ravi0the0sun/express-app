@@ -11,7 +11,7 @@ router.get('/login', (req, res) => res.render('login', {
     title: 'Login'
 }));
 router.get('/logout', (req, res) => {
-    req.logOut();
+    req.session.user = null;
     res.redirect('./login');
 });
 // router.get('/', loginController.deleteUser);

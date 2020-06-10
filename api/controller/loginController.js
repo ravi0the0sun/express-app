@@ -65,8 +65,8 @@ exports.login = async (req, res) => {
             error.push({ msg: 'Wrong Email or Password' });
         };
         if (await bcrypt.compare(password, user.password)) {
-            const id = user._id;
-            return res.status(200).redirect('./dashboard/?user=' + encodeURIComponent(id));
+            req.session.user = user._id;
+            return res.status(200).redirect('./dashboard');
         } else {
             error.push({ msg: 'Wrong Email or Password' });
         };

@@ -1,7 +1,8 @@
 // imports from diffrent libs and from the node-modules
 const express = require('express');
 const mongoose = require('mongoose');
-const passport = require('passport')
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
 const expressLayouts = require('express-ejs-layouts');
 const path = require('path');
 const config = require('./api/config/db');
@@ -22,6 +23,11 @@ mongoose
     console.log({ database_error: err });
 });
 
+// // setting up session and cookieParser
+app.use(cookieParser());
+app.use(session({ secret: 'this is a secret' }));
+
+
 // render the html using ejs 
 app.use(expressLayouts);
 app.set('view engine', 'ejs');
@@ -32,9 +38,6 @@ app.set('views', path.join('public', 'views'));
 app.use('/style', express.static('/public' + '/style'))
 
 app.use(express.urlencoded({ extended: true }));
-
-app.use(passport.initialize());
-app.use(passport.session());
 
 // app.get('/', (req, res) => {
 //     console.log('all good');
