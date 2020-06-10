@@ -3,7 +3,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const passport = require('passport')
 const expressLayouts = require('express-ejs-layouts');
-const config = require('./config/db');
+const path = require('path');
+const config = require('./api/config/db');
 const auth = require('./api/auth/auth');
 const middlewear = require('./api/auth/middlewear')
 const app = express();
@@ -24,7 +25,11 @@ mongoose
 // render the html using ejs 
 app.use(expressLayouts);
 app.set('view engine', 'ejs');
+// setting ./public/views as the default dir of ejs files 
+app.set('views', path.join('public', 'views'));
 
+// declaring static dir for CSS files 
+app.use('/style', express.static('/public' + '/style'))
 
 app.use(express.urlencoded({ extended: true }));
 

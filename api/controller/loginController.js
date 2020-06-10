@@ -38,7 +38,9 @@ exports.createUser = async (req, res) => {
         console.log(newUser);
         res.status(200).redirect('./login');
     } catch(err) {
-        res.status(500).render('register');
+        res.status(500).render('register', {
+            title: 'Register'
+        });
     };
 };
 
@@ -63,18 +65,22 @@ exports.login = async (req, res) => {
             error.push({ msg: 'Wrong Email or Password' });
         };
         if (await bcrypt.compare(password, user.password)) {
-            res.render('dashboard')
+            const id = user._id;
+            return res.status(200).redirect('./dashboard/?user=' + encodeURIComponent(id));
         } else {
             error.push({ msg: 'Wrong Email or Password' });
         };
         if (error.length > 0) {
             return res.render('login', {
+                title: 'Login',
                 error,
                 email
             });
         };
-        res.status(200).render('dashboard')
     } catch(err) {
-        res.status(500).json({ error: err });
+        res.status(500).render('login', {
+            error,
+            title: 'Login'
+        });
     };
 };
