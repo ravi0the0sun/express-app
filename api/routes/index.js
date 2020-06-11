@@ -1,9 +1,7 @@
 const express = require('express');
 const auth = require('../auth/auth');
-const middelwear = require('../auth/middlewear')
+const middlewear = require('../auth/middlewear')
 const router = express.Router();
-const middlewear = require('../auth/middlewear');
-const auth = require('../auth/auth');
 
 
 router.get('/', (req, res) => {
