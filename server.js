@@ -30,7 +30,7 @@ mongoose
 
 // // setting up session and cookieParser
 app.use(session({ 
-  secret: 'session password',
+  secret: 'session password CRM Project 2',
   resave: false,
   saveUninitialized: false,
   cookie: {maxAge: 3600000} 
